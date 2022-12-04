@@ -42,7 +42,7 @@ font-3 = unifont:fontformat=truetype:size=13:antialias=true;
 
 modules-left = launch date bspwm pulseaudio
 ;modules-center = i3 
-modules-right =  cpu-temp bluetooth memory cpu wlan powermenu 
+modules-right =  cpu-temp bluetooth memory cpu wired wlan powermenu 
 
 
 ; Position of the system tray window
@@ -142,6 +142,25 @@ format-foreground = ${colors.my-foreground}
 ;format-underline = #ffb52a
 label = %percentage_used%%
 
+[module/wired-network]
+type = internal/network
+interface = ens33
+format-connected-prefix = " "
+format-connected = <label-connected>
+format-connected-foreground = ${colors.my-foreground}
+format-connected-background = ${colors.background}
+format-connected-padding = 1
+
+label-connected = %ifname% %local_ip%
+
+format-disconnected-prefix = 
+format-disconnected-prefix-padding = 2
+format-disconnected = no connected
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+label-disconnected-foreground = #5dabeb
+
 [module/wlan]
 type = internal/network
 interface = wlp2s0
@@ -166,7 +185,7 @@ format-connected-padding = 1
 ;   %linkspeed% [wired]
 ;   %mac%       [wireless+wired] (New in version 3.6.0)
 ; Default: %ifname% %local_ip%
-label-connected = %downspeed% %local_ip%
+label-connected = %essid% %local_ip%
 
 format-disconnected-prefix = 睊
 format-disconnected-prefix-padding = 2
