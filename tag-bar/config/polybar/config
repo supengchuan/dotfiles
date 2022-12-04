@@ -1,4 +1,5 @@
 [colors]
+my-foreground = #ffdaaa
 foreground = #ffffff
 background = #00000055
 rounds = #2b2f37
@@ -10,11 +11,10 @@ alert =         #bd2c40
 green =         #98c379
 
 [bar/bar]
-
-;width = 100%
+width = 100%
 ;offset-x = 0%
-offset-y= 0.3%
-padding = 1
+offset-y= 0.5%
+padding = 2
 radius-bottom = 10
 
 height = 20
@@ -32,14 +32,17 @@ border-top-size = 0
 border-bottom-size = 0
 border-color = #0000
 
-font-0 = FiraCode Nerd Font:style=SemiBold:pixelsize=14;1
+; This is font list. If you don't explicitly set the font-index for a tag, 
+; the bar will iterate the font list and pick the first one that is able to draw the character. 
+; font-N = <fontconfig pattern>;<vertical offset>
+font-0 = FiraCode Nerd Font:style=Retina:pixelsize=14;0
 font-1 = JetBrainsMono Nerd Font:size=19;5
 font-2 = Material Design Icons:style=Bold:size=15;3
 font-3 = unifont:fontformat=truetype:size=13:antialias=true;
 
-modules-left = launch date bspwm
+modules-left = launch date bspwm pulseaudio
 ;modules-center = i3 
-modules-right =  cpu-temp bluetooth pulseaudio memory cpu  wlan powermenu 
+modules-right =  cpu-temp bluetooth memory cpu wlan powermenu 
 
 
 ; Position of the system tray window
@@ -51,7 +54,7 @@ modules-right =  cpu-temp bluetooth pulseaudio memory cpu  wlan powermenu
 ;   center
 ;   right
 ;   none
-tray-position = none
+tray-position = center
 
 ; If true, the bar will not shift its
 ; contents when the tray changes
@@ -64,7 +67,7 @@ tray-maxsize = 28
 ; Enable pseudo transparency
 ; Will automatically be enabled if a fully transparent
 ; background color is defined using `tray-background`
-tray-transparent = false
+tray-transparent = true
 
 ; Background color for the tray container 
 ; ARGB color (e.g. #f00, #ff992a, #ddff1023)
@@ -78,7 +81,7 @@ tray-background = ${root.background}
 ; system tray protocol by setting the _NET_SYSTEM_TRAY_COLORS atom on the tray
 ; window.
 ; New in version 3.6.0
-tray-foreground = ${root.foreground}
+tray-foreground = ${colors.my-foreground}
 
 ; Offset the tray in the x and/or y direction
 ; Supports any percentage with offset
@@ -88,11 +91,10 @@ tray-offset-x = 0
 tray-offset-y = 0
 
 ; Pad the sides of each tray icon
-tray-padding = 0
+tray-padding = 1
 
 ; Scale factor for tray clients
 tray-scale = 1.0
-
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -101,7 +103,7 @@ cursor-scroll = ns-resize
 [module/bspwm]
 type = internal/bspwm
 format = <label-state>
-format-foreground = #ffdaaa
+format-foreground = ${colors.my-foreground}
 format-padding = 2
 index-sort = true
 
@@ -114,7 +116,6 @@ label-focused-padding = 1
 label-occupied = 
 label-occupied-padding = 1
 
-
 label-empty = 
 label-empty-padding = 1
 
@@ -126,8 +127,8 @@ format-prefix = ""
 format-prefix-padding= 1
 format-padding = 1
 ;format-prefix-foreground = ${colors.foreground}
-format-prefix-foreground = #ffdaaa
-format-foreground = #ffdaaa
+format-prefix-foreground = ${colors.my-foreground}
+format-foreground = ${colors.my-foreground}
 ;format-underline = #ffb52a
 label = %percentage:2%%
 
@@ -137,24 +138,35 @@ interval = 2
 format-padding = 1
 format-prefix = " "
 ;format-foreground = ${colors.foreground}
-format-foreground = #ffdaaa
+format-foreground = ${colors.my-foreground}
 ;format-underline = #ffb52a
 label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
 interface = wlp2s0
-;interface = wlp1s0f0u8
 interval = 3.0
 
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.roundsroundsformat-connected-foreground = #ABB2BF
 format-connected = <label-connected>
-format-connected-foreground = #983322
+format-connected-foreground = ${colors.my-foreground}
 format-connected-background = ${colors.background}
 format-connected-padding = 1
 #format-connected-underline = #9f78e1
-label-connected = %essid%
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %netspeed%  [wireless+wired] (%upspeed% + %downspeed%) (New in version 3.6.0)
+;   %linkspeed% [wired]
+;   %mac%       [wireless+wired] (New in version 3.6.0)
+; Default: %ifname% %local_ip%
+label-connected = %downspeed% %local_ip%
 
 format-disconnected-prefix = 睊
 format-disconnected-prefix-padding = 2
@@ -164,135 +176,6 @@ format-disconnected = no connected
 ;label-disconnected = %ifname% disconnected
 label-disconnected-foreground = #5dabeb
 
-;ramp-signal-0 = 
-;ramp-signal-1 = 
-;ramp-signal-2 = 
-;ramp-signal-3 = 
-;ramp-signal-4 = 
-;ramp-signal-foreground = ${colors.foreground-alt}
-
-
-[module/i3]
-type = internal/i3
-
-; Only show workspaces defined on the same output as the bar
-;
-; Useful if you want to show monitor specific workspaces
-; on different bars
-;
-; Default: false
-pin-workspaces = true
-
-; Show urgent workspaces regardless of whether the workspace is actually hidden 
-; by pin-workspaces.
-;
-; Default: false
-; New in version 3.6.0
-show-urgent = true
-
-; This will split the workspace name on ':'
-; Default: false
-strip-wsnumbers = true
-
-; Sort the workspaces by index instead of the default
-; sorting that groups the workspaces by output
-; Default: false
-index-sort = true
-
-; Create click handler used to focus workspace
-; Default: true
-enable-click = false
-
-; Create scroll handlers used to cycle workspaces
-; Default: true
-enable-scroll = false
-
-; Wrap around when reaching the first/last workspace
-; Default: true
-wrapping-scroll = false
-
-; Set the scroll cycle direction 
-; Default: true
-reverse-scroll = false
-
-; Use fuzzy (partial) matching on labels when assigning 
-; icons to workspaces
-; Example: code;♚ will apply the icon to all workspaces 
-; containing 'code' in the label
-; Default: false
-fuzzy-match = true
-; ws-icon-[0-9]+ = <label>;<icon>
-; NOTE: The <label> needs to match the name of the i3 workspace
-; Neither <label> nor <icon> can contain a semicolon (;)
-ws-icon-0 = 1;♚
-ws-icon-1 = 2;♛
-ws-icon-2 = 3;♜
-ws-icon-3 = 4;♝
-ws-icon-4 = 5;♞
-ws-icon-default = ♟
-; NOTE: You cannot skip icons, e.g. to get a ws-icon-6
-; you must also define a ws-icon-5.
-; NOTE: Icon will be available as the %icon% token inside label-*
-
-; Available tags:
-;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
-;   <label-mode> (default)
-format = <label-state> <label-mode>
-
-; Available tokens:
-;   %mode%
-; Default: %mode%
-label-mode = %mode%
-label-mode-padding = 2
-label-mode-background = #e60053
-
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon% %name%
-label-focused = %index%
-label-focused-foreground = #ffffff
-label-focused-background = #3f3f3f
-label-focused-underline = #fba922
-label-focused-padding = 4
-
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon% %name%
-label-unfocused = %index%
-label-unfocused-padding = 4
-
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon% %name%
-label-visible = %index%
-label-visible-underline = #555555
-label-visible-padding = 4
-
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon% %name%
-label-urgent = %index%
-label-urgent-foreground = #000000
-label-urgent-background = #bd2c40
-label-urgent-padding = 4
-
-; Separator in between workspaces
-label-separator = |
-label-separator-padding = 2
-label-separator-foreground = #ffb52a
-
 [module/date]
 type = internal/date
 interval = 60
@@ -300,11 +183,10 @@ date = %a %d %b
 time = %l:%M %p
 label = "%date% %time% "
 format = <label>
-format-foreground = #ffdaaa
-;format-foreground = #edfefe
+format-foreground = ${colors.my-foreground}
 ;format-margin = 1
-format-prefix = |
-format-prefix-padding = 1
+;format-prefix = |
+;format-prefix-padding = 1
 ;format-prefix-underline = ${colors.color6}
 format-prefix-foreground = ${colors.foreground}
 ;format-prefix-background = ${colors.color1}
@@ -316,13 +198,29 @@ label-padding = 1
 
 [module/pulseaudio]
 type = internal/pulseaudio
-
-format-volume = <label-volume> <bar-volume>
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <label-volume>
 format-volume-background = ${colors.background}
 format-volume-padding = 1
 label-volume = 醙 %percentage%%
-label-volume-foreground = #ffdaaa
+label-volume-foreground = ${colors.my-foreground}
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+;format-muted = <label-muted>
 
+; Available tokens:
+;   %percentage% (default)
+;   %decibels%
+;label-volume = %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels%
 label-muted = muted
 label-muted-foreground = #666
 label-muted-background = ${colors.rounds}
@@ -349,7 +247,7 @@ format-volume = <label-volume> <bar-volume>
 format-volume-background = ${colors.rounds}
 format-volume-padding = 1
 label-volume =  %percentage%%
-label-volume-foreground = #ffdaaa
+label-volume-foreground = ${colors.my-foreground}
 
 label-muted =  muted
 label-muted-foreground = #666
@@ -406,16 +304,16 @@ animation-discharging-framerate = 750
 
 [module/launch]
 type = custom/text
-content = 
-content-padding = 2
+content = ""
+content-padding = 1
 content-background = ${colors.background}
-content-foreground = #ffdaaa
+content-foreground = ${colors.my-foreground}
 click-left = ~/.config/rofi/launchers/type-4/launcher.sh 
 format-underline = #704214
 
 [module/powermenu]
 type = custom/text
-content = " "
+content = ""
 content-padding = 1
 content-background = ${colors.background}
 content-foreground = #BF616A
@@ -426,7 +324,8 @@ format-underline = #704214
 [module/cpu-temp]
 type = custom/script
 exec = ~/.config/polybar/scripts/cpu-temp.sh
-content-foreground=#ffdaaa
+format-foreground = ${colors.my-foreground}
+content-foreground= ${colors.my-foreground}
 interval = 5
 
 [module/bluetooth]
@@ -437,8 +336,7 @@ click-left = exec blueberry
 click-right = exec ~/.config/polybar/scripts/toggle_bluetooth.sh
 format-padding = 1
 format-background = ${colors.background}
-format-foreground = #ffdaaa
-
+format-foreground = ${colors.my-foreground}
 
 [module/round-left]
 type = custom/text
