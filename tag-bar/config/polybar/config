@@ -17,6 +17,9 @@ offset-y= 0.7%
 padding = 2
 radius-bottom = 10
 
+; Locale used to localize various module data (e.g. date)
+; Expects a valid libc locale, for example: sv_SE.UTF-8
+locale = zh_CN.UTF-8
 height = 20
 fixed-center = true
 
@@ -35,10 +38,9 @@ border-color = #0000
 ; This is font list. If you don't explicitly set the font-index for a tag, 
 ; the bar will iterate the font list and pick the first one that is able to draw the character. 
 ; font-N = <fontconfig pattern>;<vertical offset>
-font-0 = FiraCode Nerd Font:style=Retina:pixelsize=14;0
-font-1 = JetBrainsMono Nerd Font:size=19;5
-font-2 = Material Design Icons:style=Bold:size=15;3
-font-3 = unifont:fontformat=truetype:size=13:antialias=true;
+font-0 = "FiraCode Nerd Font:style=Retina:pixelsize=14;1"
+font-1 = JetBrainsMono Nerd Font:size=14;0
+font-2 = Material Design Icons:style=Regular:size=12;0
 
 modules-left = launch date bspwm pulseaudio
 ;modules-center = i3 
@@ -63,11 +65,6 @@ tray-detached = true
 ; Tray icon max size
 tray-maxsize = 28
 
-; @deprecated Since 3.3.0 the tray always uses pseudo-transparency
-; Enable pseudo transparency
-; Will automatically be enabled if a fully transparent
-; background color is defined using `tray-background`
-tray-transparent = true
 
 ; Background color for the tray container 
 ; ARGB color (e.g. #f00, #ff992a, #ddff1023)
@@ -130,7 +127,7 @@ format-padding = 1
 format-prefix-foreground = ${colors.my-foreground}
 format-foreground = ${colors.my-foreground}
 ;format-underline = #ffb52a
-label = %percentage:2%%
+label = %percentage%%
 
 [module/memory]
 type = internal/memory
@@ -142,16 +139,16 @@ format-foreground = ${colors.my-foreground}
 ;format-underline = #ffb52a
 label = %percentage_used%%
 
-[module/wired-network]
+[module/wired]
 type = internal/network
-interface = ens33
+interface = enp0s31f6
 format-connected-prefix = " "
 format-connected = <label-connected>
 format-connected-foreground = ${colors.my-foreground}
 format-connected-background = ${colors.background}
 format-connected-padding = 1
 
-label-connected = %ifname% %local_ip%
+label-connected = %local_ip%
 
 format-disconnected-prefix = 
 format-disconnected-prefix-padding = 2
