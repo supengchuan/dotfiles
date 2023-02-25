@@ -7,7 +7,8 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 #feh --randomize --bg-fill ~/Pictures/bg/wallhaven-pk6y2p.png
 feh --randomize --bg-fill ~/Pictures/Wallpapers/wallhaven-z81ovo.png
 pgrep -x polybar > /dev/null || ~/.config/polybar/launch.sh &
-pgrep -x fcitx5 > /dev/null || fcitx5 &
+#pgrep -x fcitx5 > /dev/null || fcitx5 &
+pgrep -x fcitx > /dev/null || fcitx &
 #pgrep -x clash > /dev/null || /opt/clash/clash &
 
 bspc monitor -d Coding Web Document Media

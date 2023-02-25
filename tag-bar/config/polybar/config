@@ -152,7 +152,9 @@ label-connected = %local_ip%
 
 format-disconnected-prefix = 
 format-disconnected-prefix-padding = 2
-format-disconnected = no connected
+format-disconnected-prefix-foreground =${colors.secondary}
+format-disconnected = " "
+;format-disconnected-foreground = ${colrs.secondary}
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
@@ -257,34 +259,6 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
-[module/alsa]
-type = internal/alsa
-format-volume = <label-volume> <bar-volume>
-format-volume-background = ${colors.rounds}
-format-volume-padding = 1
-label-volume =  %percentage%%
-label-volume-foreground = ${colors.my-foreground}
-
-label-muted =  muted
-label-muted-foreground = #666
-label-muted-background = ${colors.rounds}
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = 
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
-
 [module/battery]
 type = internal/battery
 battery = BAT0
@@ -323,7 +297,7 @@ type = custom/text
 content = ""
 content-padding = 1
 content-background = ${colors.background}
-content-foreground = ${colors.my-foreground}
+content-foreground = ${colors.primary}
 click-left = ~/.config/rofi/launchers/type-4/launcher.sh 
 format-underline = #704214
 
