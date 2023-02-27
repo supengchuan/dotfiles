@@ -3,10 +3,14 @@ local wezterm = require("wezterm")
 return {
 	use_ime = true,
 	xim_im_name = "fcitx",
+	-- no gpu config
+	-- prefer_egl=true,
 	-- enable ctrl-space to change input method
 	--font = wezterm.font("FiraCode Nerd Font Mono", { weight = "Regular", italic = false }),
 	--font = wezterm.font("FiraCode Nerd Font Mono", { weight = "Regular", italic = false }),
 	--font = wezterm.font("JetBrains Mono", { weight = "Bold", italic = false }),
+	-- windows pwsh
+	-- default_prog = { "C:\\Program Files\\PowerShell\\7\\pwsh.exe" },
 	font = wezterm.font_with_fallback({
 		{ family = "JetBrains Mono", weight = "Regular", italic = false },
 		{ family = "FiraCode Nerd Font Mono", weight = "Regular", italic = false },
