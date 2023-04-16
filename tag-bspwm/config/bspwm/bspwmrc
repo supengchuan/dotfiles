@@ -5,7 +5,8 @@ setxkbmap -layout us -option ctrl:nocaps
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 #feh --randomize --bg-fill ~/Pictures/bg/wallhaven-pk6y2p.png
-feh --randomize --bg-fill ~/Pictures/Wallpapers/wallhaven-z81ovo.png
+#feh --randomize --bg-fill ~/Pictures/Wallpapers/wallhaven-z81ovo.png
+feh --randomize --bg-fill ~/Pictures/Wallpapers/wallhaven-1pqq1w.jpg
 pgrep -x polybar > /dev/null || ~/.config/polybar/launch.sh &
 #pgrep -x fcitx5 > /dev/null || fcitx5 &
 pgrep -x fcitx > /dev/null || fcitx &

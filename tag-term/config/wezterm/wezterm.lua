@@ -15,7 +15,7 @@ return {
 		{ family = "JetBrains Mono", weight = "Regular", italic = false },
 		{ family = "FiraCode Nerd Font Mono", weight = "Regular", italic = false },
 	}),
-	font_size = 18,
+	font_size = 15,
 	color_scheme = "Dracula",
 	tab_bar_at_bottom = true,
 	use_fancy_tab_bar = true,

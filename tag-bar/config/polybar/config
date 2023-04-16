@@ -4,11 +4,12 @@ foreground = #ffffff
 background = #00000055
 rounds = #2b2f37
 background-alt = #44400
-foreground-alt =#555
-primary =       #ffb52a
-secondary =     #e60053
-alert =         #bd2c40
-green =         #98c379
+foreground-alt = #555
+primary = #ffb52a
+warning = #ffb54a
+secondary = #e60053
+alert = #bd2c40
+green = #98c379
 
 [bar/bar]
 width = 100%
@@ -35,16 +36,16 @@ border-top-size = 0
 border-bottom-size = 0
 border-color = #0000
 
-; This is font list. If you don't explicitly set the font-index for a tag, 
-; the bar will iterate the font list and pick the first one that is able to draw the character. 
+; This is font list. If you don't explicitly set the font-index for a tag,
+; the bar will iterate the font list and pick the first one that is able to draw the character.
 ; font-N = <fontconfig pattern>;<vertical offset>
 font-0 = "FiraCode Nerd Font:style=Retina:pixelsize=14;1"
 font-1 = JetBrainsMono Nerd Font:size=14;0
 font-2 = Material Design Icons:style=Regular:size=12;0
 
 modules-left = launch date bspwm pulseaudio
-;modules-center = i3 
-modules-right =  cpu-temp bluetooth memory cpu wired wlan powermenu 
+;modules-center = i3
+modules-right =  cpu-temp bluetooth memory cpu wired wlan powermenu
 
 
 ; Position of the system tray window
@@ -66,7 +67,7 @@ tray-detached = true
 tray-maxsize = 28
 
 
-; Background color for the tray container 
+; Background color for the tray container
 ; ARGB color (e.g. #f00, #ff992a, #ddff1023)
 ; By default the tray container will use the bar
 ; background color.
@@ -251,7 +252,7 @@ bar-volume-foreground-4 = #98c379
 bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
-bar-volume-indicator = 
+bar-volume-indicator =
 bar-volume-indicator-font = 2
 bar-volume-fill = ─
 bar-volume-fill-font = 2
@@ -298,18 +299,62 @@ content = ""
 content-padding = 1
 content-background = ${colors.background}
 content-foreground = ${colors.primary}
-click-left = ~/.config/rofi/launchers/type-4/launcher.sh 
+click-left = ~/.config/rofi/launcher.sh 
 format-underline = #704214
 
 [module/powermenu]
-type = custom/text
-content = ""
-content-padding = 1
-content-background = ${colors.background}
-content-foreground = #BF616A
-#click-left = ~/.config/polybar/scripts/dmenu.sh
-click-left = ~/.config/rofi/powermenu/type-2/powermenu.sh
-format-underline = #704214
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = ""
+;label-open-foreground = ${colors.urgent}
+label-open-foreground = ${colors.alert}
+;label-close =  cancel
+label-close = 
+label-close-foreground = ${colors.green}
+label-separator = |
+label-separator-foreground = ${colors.foreground}
+
+;Powermenu
+;Reboot
+menu-0-0 = " "
+menu-0-0-exec = menu-open-1
+menu-0-0-foreground = ${colors.primary}
+;poweroff
+menu-0-1 = " "
+menu-0-1-exec = menu-open-2
+menu-0-1-foreground = ${colors.alert}
+;Logout
+menu-0-2 = " "
+menu-0-2-exec = menu-open-3
+menu-0-2-foreground = ${colors.warning}
+
+;Reboot
+menu-1-0 = "Reboot"
+menu-1-0-exec = systemctl reboot
+menu-1-0-foreground = ${colors.warning}
+menu-1-1 = " "
+menu-1-1-exec = menu-open-0
+menu-1-1-foreground = ${colors.green}
+
+;Shutdown
+menu-2-0 = "Poweroff"
+menu-2-0-exec = systemctl poweroff
+menu-2-0-foreground = ${colors.warning}
+menu-2-1 = " "
+menu-2-1-exec = menu-open-0
+menu-2-1-foreground = ${colors.green}
+
+;Logout
+menu-3-0 = "Logout "
+menu-3-0-exec = bspc quit
+menu-3-0-foreground = ${colors.warning}
+menu-3-1 = " "
+menu-3-1-exec = menu-open-0
+menu-3-1-foreground = ${colors.green}
 
 [module/cpu-temp]
 type = custom/script
