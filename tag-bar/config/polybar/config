@@ -12,10 +12,10 @@ alert = #bd2c40
 green = #98c379
 
 [bar/bar]
-width = 100%
+width = 99%
 ;offset-x = 0%
 offset-y= 0.7%
-padding = 2
+padding = 1
 radius-bottom = 10
 
 ; Locale used to localize various module data (e.g. date)
@@ -39,11 +39,11 @@ border-color = #0000
 ; This is font list. If you don't explicitly set the font-index for a tag,
 ; the bar will iterate the font list and pick the first one that is able to draw the character.
 ; font-N = <fontconfig pattern>;<vertical offset>
-font-0 = "FiraCode Nerd Font:style=Retina:pixelsize=14;1"
+font-0 = "FiraCode Nerd Font:style=Retina:pixelsize=15;1"
 font-1 = JetBrainsMono Nerd Font:size=14;0
 font-2 = Material Design Icons:style=Regular:size=12;0
 
-modules-left = launch date bspwm pulseaudio
+modules-left = date bspwm pulseaudio
 ;modules-center = i3
 modules-right =  cpu-temp bluetooth memory cpu wired wlan powermenu
 
@@ -198,21 +198,15 @@ label-disconnected-foreground = #5dabeb
 [module/date]
 type = internal/date
 interval = 60
-date = %a %d %b
+date = %Y-%m-%d%
 time = %l:%M %p
 label = "%date% %time% "
 format = <label>
 format-foreground = ${colors.my-foreground}
-;format-margin = 1
-;format-prefix = |
-;format-prefix-padding = 1
-;format-prefix-underline = ${colors.color6}
-format-prefix-foreground = ${colors.foreground}
-;format-prefix-background = ${colors.color1}
-;label =  %time%
-;label-underline = ${colors.color6}
-;label-foreground = ${colors.color3}
-;label-background = ${colors.color1}
+format-margin = 1
+format-prefix = 
+format-prefix-padding = 1
+format-prefix-foreground = ${colors.primary}
 label-padding = 1
 
 [module/pulseaudio]
