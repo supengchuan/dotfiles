@@ -12,7 +12,7 @@ pgrep -x polybar > /dev/null || ~/.config/polybar/launch.sh &
 pgrep -x fcitx > /dev/null || fcitx &
 #pgrep -x clash > /dev/null || /opt/clash/clash &
 
-bspc monitor -d Coding Web Document Media
+bspc monitor -d I II III IV V VI
 
 bspc config border_width        2
 bspc config window_gap          5

@@ -2,6 +2,10 @@
 super + Escape
 	pkill -USR1 -x sxhkd
 
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
 #
 # wm independent hotkeys
 #
@@ -9,7 +13,7 @@ alt + Return
 	alacritty
 
 alt + w
-	/usr/bin/wezterm start --cwd . --always-new-process
+	wezterm start --cwd . --always-new-process
 
 # 音频输出软件 pavucontrol, 它key选择输出设备
 alt + p
@@ -37,10 +41,6 @@ super + space
 #
 # bspwm hotkeys
 #
-
-# quit/restart bspwm
-super + alt + {q,r}
-	bspc {quit,wm -r}
 
 alt + {_,shift + }q
 	bspc node -{c,k}

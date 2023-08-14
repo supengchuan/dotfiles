@@ -18,10 +18,16 @@ offset-y= 0.7%
 padding = 1
 radius-bottom = 10
 
+; To allow other windows to be placed above the bar, or to avoid having the bar visible
+; when in fullscreen mode, you need to use the following two parameters. Note that it
+; will tell the window manager to back off so no area will be reserved, etc.
+; override-redirect = true
+wm-restack = bspwm
+
 ; Locale used to localize various module data (e.g. date)
 ; Expects a valid libc locale, for example: sv_SE.UTF-8
 locale = zh_CN.UTF-8
-height = 20
+height = 22
 fixed-center = true
 
 scroll-up = #bspwm.prev
@@ -30,7 +36,7 @@ scroll-down = #bspwm.next
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 2
+line-size =1
 
 border-top-size = 0
 border-bottom-size = 0
@@ -108,20 +114,20 @@ index-sort = true
 enable-click = true
 reverse-scroll = false
 
-label-focused = 
+label-focused = 󰝥
 label-focused-padding = 1
 
-label-occupied = 
+label-occupied = 󰛸
 label-occupied-padding = 1
 
-label-empty = 
+label-empty = 󰝦
 label-empty-padding = 1
 
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = ""
+format-prefix = ""
 format-prefix-padding= 1
 format-padding = 1
 ;format-prefix-foreground = ${colors.foreground}
@@ -134,7 +140,7 @@ label = %percentage%%
 type = internal/memory
 interval = 2
 format-padding = 1
-format-prefix = " "
+format-prefix = "󰘚 "
 ;format-foreground = ${colors.foreground}
 format-foreground = ${colors.my-foreground}
 ;format-underline = #ffb52a
@@ -143,7 +149,7 @@ label = %percentage_used%%
 [module/wired]
 type = internal/network
 interface = enp0s31f6
-format-connected-prefix = " "
+format-connected-prefix = "󰈀 "
 format-connected = <label-connected>
 format-connected-foreground = ${colors.my-foreground}
 format-connected-background = ${colors.background}
@@ -151,7 +157,7 @@ format-connected-padding = 1
 
 label-connected = %local_ip%
 
-format-disconnected-prefix = 
+format-disconnected-prefix = 󰈂
 format-disconnected-prefix-padding = 2
 format-disconnected-prefix-foreground =${colors.secondary}
 format-disconnected = " "
@@ -166,7 +172,7 @@ type = internal/network
 interface = wlp2s0
 interval = 3.0
 
-format-connected-prefix = " "
+format-connected-prefix = "󰖩 "
 format-connected-prefix-foreground = ${colors.roundsroundsformat-connected-foreground = #ABB2BF
 format-connected = <label-connected>
 format-connected-foreground = ${colors.my-foreground}
@@ -187,7 +193,7 @@ format-connected-padding = 1
 ; Default: %ifname% %local_ip%
 label-connected = %essid% %local_ip%
 
-format-disconnected-prefix = 睊
+format-disconnected-prefix = 󰖪
 format-disconnected-prefix-padding = 2
 format-disconnected = no connected
 ;format-disconnected = <label-disconnected>
@@ -204,7 +210,7 @@ label = "%date% %time% "
 format = <label>
 format-foreground = ${colors.my-foreground}
 format-margin = 1
-format-prefix = 
+format-prefix = 󰥔
 format-prefix-padding = 1
 format-prefix-foreground = ${colors.primary}
 label-padding = 1
@@ -218,7 +224,7 @@ type = internal/pulseaudio
 format-volume = <label-volume>
 format-volume-background = ${colors.background}
 format-volume-padding = 1
-label-volume = 醙 %percentage%%
+label-volume = 󰗅 %percentage%%
 label-volume-foreground = ${colors.my-foreground}
 ; Available tags:
 ;   <label-muted> (default)
@@ -293,7 +299,7 @@ content = ""
 content-padding = 1
 content-background = ${colors.background}
 content-foreground = ${colors.primary}
-click-left = ~/.config/rofi/launcher.sh 
+click-left = ~/.config/rofi/launcher.sh
 format-underline = #704214
 
 [module/powermenu]
@@ -307,14 +313,14 @@ label-open = ""
 ;label-open-foreground = ${colors.urgent}
 label-open-foreground = ${colors.alert}
 ;label-close =  cancel
-label-close = 
+label-close = 󰍃
 label-close-foreground = ${colors.green}
 label-separator = |
 label-separator-foreground = ${colors.foreground}
 
 ;Powermenu
 ;Reboot
-menu-0-0 = " "
+menu-0-0 = " 󰦛"
 menu-0-0-exec = menu-open-1
 menu-0-0-foreground = ${colors.primary}
 ;poweroff
@@ -322,7 +328,7 @@ menu-0-1 = " "
 menu-0-1-exec = menu-open-2
 menu-0-1-foreground = ${colors.alert}
 ;Logout
-menu-0-2 = " "
+menu-0-2 = " 󰀿"
 menu-0-2-exec = menu-open-3
 menu-0-2-foreground = ${colors.warning}
 
@@ -330,7 +336,7 @@ menu-0-2-foreground = ${colors.warning}
 menu-1-0 = "Reboot"
 menu-1-0-exec = systemctl reboot
 menu-1-0-foreground = ${colors.warning}
-menu-1-1 = " "
+menu-1-1 = " 󰁭"
 menu-1-1-exec = menu-open-0
 menu-1-1-foreground = ${colors.green}
 
@@ -338,7 +344,7 @@ menu-1-1-foreground = ${colors.green}
 menu-2-0 = "Poweroff"
 menu-2-0-exec = systemctl poweroff
 menu-2-0-foreground = ${colors.warning}
-menu-2-1 = " "
+menu-2-1 = " 󰁭"
 menu-2-1-exec = menu-open-0
 menu-2-1-foreground = ${colors.green}
 
@@ -346,7 +352,7 @@ menu-2-1-foreground = ${colors.green}
 menu-3-0 = "Logout "
 menu-3-0-exec = bspc quit
 menu-3-0-foreground = ${colors.warning}
-menu-3-1 = " "
+menu-3-1 = " 󰁭"
 menu-3-1-exec = menu-open-0
 menu-3-1-foreground = ${colors.green}
 
@@ -355,7 +361,7 @@ type = custom/script
 exec = ~/.config/polybar/scripts/cpu-temp.sh
 format-foreground = ${colors.my-foreground}
 content-foreground= ${colors.my-foreground}
-interval = 5
+interval = 2
 
 [module/bluetooth]
 type = custom/script

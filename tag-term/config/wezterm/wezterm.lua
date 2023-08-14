@@ -12,8 +12,10 @@ return {
 	-- windows pwsh
 	-- default_prog = { "C:\\Program Files\\PowerShell\\7\\pwsh.exe" },
 	font = wezterm.font_with_fallback({
-		{ family = "JetBrains Mono", weight = "Regular", italic = false },
+		--{ family = "MesloLGS Nerd Font Mono", weight = "Regular", italic = false },
+		--{ family = "JetBrains Mono", weight = "Regular", italic = false },
 		{ family = "FiraCode Nerd Font Mono", weight = "Regular", italic = false },
+		{ family = "Source Han Serif SC", weight = "Regular", italic = false },
 	}),
 	font_size = 15,
 	color_scheme = "Dracula",
@@ -32,15 +34,18 @@ return {
 			intensity = "Normal",
 			italic = true,
 			font = wezterm.font_with_fallback({
-				{ family = "JetBrains Mono", weight = "Regular", italic = false },
+				--{ family = "MesloLGS Nerd Font Mono", weight = "Regular", italic = false },
+				--{ family = "JetBrains Mono", weight = "Regular", italic = false },
 				{ family = "FiraCode Nerd Font Mono", weight = "Regular", italic = false },
+				{ family = "Source Han Serif SC", weight = "Regular", italic = false },
 			}),
 		},
 		{
 			intensity = "Bold",
 			italic = true,
 			font = wezterm.font_with_fallback({
-				{ family = "JetBrains Mono", weight = "Bold", italic = false },
+				--{ family = "MesloLGS Nerd Font Mono", weight = "Bold", italic = false },
+				--{ family = "JetBrains Mono", weight = "Bold", italic = false },
 				{ family = "FiraCode Nerd Font Mono", weight = "Bold", italic = false },
 			}),
 		},
@@ -52,7 +57,7 @@ return {
 		-- Whatever font is selected here, it will have the
 		-- main font setting appended to it to pick up any
 		-- fallback fonts you may have used there.
-		font = wezterm.font({ family = "FiraCode Nerd Font Mono", weight = "Regular", italic = false }),
+		font = wezterm.font({ family = "MesloLGS Nerd Font Mono", weight = "Regular", italic = false }),
 
 		-- The size of the font in the tab bar.
 		-- Default to 10. on Windows but 12.0 on other systems

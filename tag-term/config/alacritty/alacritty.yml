@@ -1,31 +1,33 @@
 import:
-  - /home/supc/.config/alacritty/dracula.yml
-    #- /home/supc/.config/alacritty/gruvbox.yml
+  #- /home/supc/.config/alacritty/dracula.yml
+  - ~/.config/alacritty/dracula.yml
+  #- /home/supc/.config/alacritty/gruvbox.yml
 
 font:
   normal:
     #family: UbuntuMono Nerd Font Mono  
     family: FiraCode Nerd Font Mono  
-    style: Retina
+      #style: Retina
+    style: SemiBold
   bold:
     family: FiraCode Nerd Font Mono
     style: Bold
   
   italic:
     family: FiraCode Nerd Font Mono
-    style: Normal
+    style: SemiBold
 
   bold_italic:
     family: FiraCode Nerd Font Mono
     style: Bold
 
-  size: 16
+  size: 13
   offset:
     y: 0
     x: 0
 
 window:
-  opacity: 1
+  opacity: 0.9
   padding:
     x: 0
     y: 0
@@ -93,7 +95,6 @@ cursor:
   # from `0.0` to `1.0`.
   #thickness: 0.15
 
-
 save_to_clipboard: true
 mouse:
   hide_when_typing: true
@@ -127,8 +128,7 @@ mouse:
 #
 # - `mods` (see key bindings)
 mouse_bindings:
-#  - { mouse: Right,                 action: ExpandSelection }
-  - { mouse: Right,                 action: PasteSelection }
+  #  - { mouse: Right,                 action: ExpandSelection }
+  - { mouse: Right, action: PasteSelection }
 #  - { mouse: Right,  mods: Control, action: ExpandSelection }
 #  - { mouse: Middle, mode: ~Vi,     action: PasteSelection  }
-
