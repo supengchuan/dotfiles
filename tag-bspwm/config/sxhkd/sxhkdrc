@@ -33,10 +33,15 @@ alt + m
 # program launcher
 alt + d
 	dmenu_run
+	#/bin/bash /home/supc/.config/rofi/launcher.sh
 
 # run app launch
-super + space
-	~/.config/rofi/launcher.sh
+alt + space
+	~/.config/rofi/launchers/type-5/launcher.sh
+
+# run powermenu
+alt + ctrl + e
+	~/.config/rofi/powermenu/type-6/powermenu.sh	
 
 #
 # bspwm hotkeys
